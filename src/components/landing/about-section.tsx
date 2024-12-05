@@ -76,7 +76,7 @@ export default function AboutSection() {
                 variants={globalVariant}
                 className="lg:text-5xl xl:text-7xl font-bold text-3xl mb-2 max-sm:text-center lg:mb-8 sm:text-4xl sm:mb-4"
               >
-                Who I am🤔
+                Who I am?
               </motion.h2>
               <motion.p
                 variants={globalVariant}
@@ -85,6 +85,14 @@ export default function AboutSection() {
                 With years of experience in crafting seamless digital
                 experiences, I specialize in building full-stack applications
                 using the latest technologies
+              </motion.p>
+              <motion.p
+                variants={globalVariant}
+                className="lg:text-3xl xl:text-4xl text-lg max-sm:text-center sm:text-2xl font-semibold"
+              >
+                My passion for clean code and innovation drives me to create
+                visually stunning and user-friendly applications that
+                prioritize performance and accessibility
               </motion.p>
             </div>
           </motion.div>
@@ -122,7 +130,8 @@ export default function AboutSection() {
                 <p className="xl:text-xl sm:text-lg ">
                   Building your vision into reality with tailored web solutions,
                   we&apos;re here to transform your ideas into functional,
-                  user-friendly digital experiences.
+                  user-friendly digital experiences. With a focus on clean code and innovation, we deliver
+                  high-quality solutions that exceed your expectations.
                 </p>
               </div>
               <Link href={'/services'}>
