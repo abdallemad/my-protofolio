@@ -1,11 +1,15 @@
 "use client";
+
 import HeroSection from "@/components/landing/hero-secontion";
-import { useLottie } from "lottie-react";
+import AboutSection from '@/components/landing/about-section'
+import ProjectsGallery from "@/components/landing/projects-gallery";
 export default function Home() {
+
   return (
     <main className="min-h-[300dvh]">
       <HeroSection />
-      <div></div>
+      <AboutSection />
+      <ProjectsGallery />
     </main>
   );
 }

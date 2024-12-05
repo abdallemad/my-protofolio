@@ -4,20 +4,32 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MagneticLink } from "../animated-components/magnetic-link";
 import MaxWidthWrapper from "./max-width-wrapper";
 import Sidebar from "./sidebar";
+import MagneticRoundedButton from "../animated-components/magnetic-rounded-button";
 function Navbar() {
   const pathname = usePathname();
   const [hoveredLink, setIsHoveredLink] = useState<string | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [showSidebarButton, setShowSidebarButton] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      if ((window.scrollY > 150)) setShowSidebarButton(true);
+      else if(!isSidebarOpen) setShowSidebarButton(false);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isSidebarOpen]);
   return (
     <>
       <nav className="py-3 md:py-5 lg:py-7">
         <MaxWidthWrapper className="flex items-center justify-between">
           <span className="font-bold sm:text-lg lg:text-xl cursor-pointer">
-            Abdalla Codding
+            Abdalla Emad
           </span>
           <ul className=" items-center gap-6 hidden lg:flex">
             {links.map((link) => {
@@ -55,20 +67,37 @@ function Navbar() {
               );
             })}
           </ul>
-          <button
-            onClick={() => setIsSidebarOpen(true)}
-            className="cursor-pointer transition-colors duration-500 block lg:hidden rounded-full hover:bg-[#cdcdcd] hover:text-base-200 p-2 border-2 border-[#cdcdcd]"
-          >
-            <Menu className="block lg:hidden text-6 sm:text-8 " />
-          </button>
+          <MagneticLink className=" block lg:hidden">
+            <button
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+              className="cursor-pointer transition-colors duration-500 rounded-full hover:bg-[#cdcdcd] hover:text-base-200 p-2 border-2 border-[#cdcdcd]"
+            >
+              <Menu className="block lg:hidden text-6 sm:text-8 " />
+            </button>
+          </MagneticLink>
         </MaxWidthWrapper>
       </nav>
       <AnimatePresence mode="wait">
-        {
-          isSidebarOpen && (
-            <Sidebar setIsSidebarOpen={setIsSidebarOpen}/>
-          )
-        }
+        {showSidebarButton && (
+          <motion.div
+            variants={{
+              show: { scale: 1, opacity: 1 },
+              hide: { scale: 0, opacity: 0 },
+            }}
+            initial="hide"
+            animate="show"
+            exit="hide"
+            className="fixed top-4 sm:top-8 sm:right-10 right-4 z-[9999]"
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          >
+            <MagneticRoundedButton space={20} secondSpace={10} parentClassName=" bg-primary rounded-full z-[999] inline-block cursor-pointer size-12 sm:size-24">
+              <Menu className="text-primary-content sm:size-8 size-4" />
+            </MagneticRoundedButton>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence mode="wait">
+        {isSidebarOpen && <Sidebar setIsSidebarOpen={setIsSidebarOpen} />}
       </AnimatePresence>
     </>
   );
