@@ -69,7 +69,7 @@ function Navbar() {
           </ul>
           <MagneticLink className=" block lg:hidden">
             <button
-              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+              onClick={() =>{ setIsSidebarOpen(!isSidebarOpen); setShowSidebarButton(true)}}
               className="cursor-pointer transition-colors duration-500 rounded-full hover:bg-[#cdcdcd] hover:text-base-200 p-2 border-2 border-[#cdcdcd]"
             >
               <Menu className="block lg:hidden text-6 sm:text-8 " />
