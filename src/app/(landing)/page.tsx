@@ -1,4 +1,3 @@
-"use client";
 
 import HeroSection from "@/components/landing/hero-secontion";
 import AboutSection from '@/components/landing/about-section'
