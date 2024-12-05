@@ -22,6 +22,6 @@ export default {
   },
   plugins: [require("daisyui"), require("tailwindcss-animate")],
   daisyui: {
-    themes: ["business", 'light'],
+    themes: ["business"],
   },
 } satisfies Config;

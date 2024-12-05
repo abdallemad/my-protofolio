@@ -40,7 +40,7 @@ export default function AboutSection() {
 
   return (
     <div>
-      <div ref={targetRef} className="relative px-4 h-[300dvh]">
+      <div ref={targetRef} className="relative lg:px-4 h-[300dvh]">
         {/* Section 1 */}
         <motion.div
           style={{ scale, transformOrigin: "center", rotate }}
