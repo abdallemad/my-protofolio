@@ -8,36 +8,40 @@ function HeroSection() {
   const [scope, animate] = useAnimate();
   useEffect(() => {
     const startAnimate = async () => {
-      await animate(
-        ".heading",
-        { opacity: 1, x: 0 },
-        { duration: 0.5, type: "spring" }
-      );
-      await animate(
-        ".description",
-        { opacity: 1, x: 0 },
-        { duration: 0.5, type: "spring" }
-      );
-      await animate(
-        ".btn-1",
-        { scale: 1, opacity: 1 },
-        { duration: 0.3, type: "spring" }
-      );
-      await animate(
-        ".btn-2",
-        { scale: 1, opacity: 1 },
-        { duration: 0.1, type: "spring" }
-      );
-      await animate(
-        ".marque-1",
-        { scaleY: 1, y: 0, rotateX: 0, translate: 0 },
-        { duration: 0.4, type: "spring" }
-      );
-      await animate(
-        ".marque-2",
-        { scaleY: 1, y: 0, rotateX: 0, translate: 0 },
-        { duration: 0.6, type: "spring" }
-      );
+      try {
+        await animate(
+          ".heading",
+          { opacity: 1, x: 0 },
+          { duration: 0.5, type: "spring" }
+        );
+        await animate(
+          ".description",
+          { opacity: 1, x: 0 },
+          { duration: 0.5, type: "spring" }
+        );
+        await animate(
+          ".btn-1",
+          { scale: 1, opacity: 1 },
+          { duration: 0.3, type: "spring" }
+        );
+        await animate(
+          ".btn-2",
+          { scale: 1, opacity: 1 },
+          { duration: 0.1, type: "spring" }
+        );
+        await animate(
+          ".marque-1",
+          { scaleY: 1, y: 0, rotateX: 0, translate: 0 },
+          { duration: 0.4, type: "spring" }
+        );
+        await animate(
+          ".marque-2",
+          { scaleY: 1, y: 0, rotateX: 0, translate: 0 },
+          { duration: 0.6, type: "spring" }
+        );
+      } catch (error) {
+        throw new Error('there is one class messing up');
+      }
     };
     try {
       startAnimate();
@@ -97,14 +101,14 @@ function HeroSection() {
         className="w-screen h-10 sm:h-14  lg:h-20 xl:h-24 bg-primary text-primary-content mb-2 marque-1 flex items-center text-2xl font-bold z-[999] select-none"
       >
         <VelocityScroll
-          default_velocity={0.6}
+          default_velocity={0.3}
           className=" text-sm sm:text-xl lg:text-2xl xl:text-4xl uppercase"
           text="I design and develop stunning, high-performance web applications tailored to your unique needs. Let’s create something extraordinary together"
         />
       </motion.div>
       <motion.div
         style={{ scaleY: 0, y: 100, rotateX: 90, translateZ: 100 }}
-        className="w-screen h-10 sm:h-14  lg:h-20 xl:h-24 bg-secondary text-secondary-content mb-2 marque-1 flex items-center text-2xl font-bold z-[999] select-none"
+        className="w-screen h-10 sm:h-14  lg:h-20 xl:h-24 bg-secondary text-secondary-content mb-2 marque-2 flex items-center text-2xl font-bold z-[999] select-none"
       >
         <VelocityScroll
           default_velocity={-0.6}

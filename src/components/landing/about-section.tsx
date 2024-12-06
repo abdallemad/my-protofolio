@@ -1,152 +1,145 @@
 "use client";
 
+import { useMediaQuery } from "@/hooks/use-media-query";
+import { motion, useScroll, useTransform } from "framer-motion";
 import dynamic from "next/dynamic";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef } from "react";
-import Link from "next/link";
+import astroAnimation from "../../../public/lottie/astro-animation-lottei.json";
+import developerThinking from "../../../public/lottie/developer-thinking.json";
+import figmaAnimation from "../../../public/lottie/figma-animation.json";
 
 // Dynamically import Lottie to prevent SSR issues
 const DynamicLottie = dynamic(() => import("lottie-react"), { ssr: false });
-import astroAnimation from "../../../public/lottie/astro-animation-lottei.json";
-import developerThinking from "../../../public/lottie/developer-thinking.json";
-import MagneticRoundedButton from "../animated-components/magnetic-rounded-button";
-import MaxWidthWrapper from "../global/max-width-wrapper";
-import SkillCard from "../ui/skill-card";
 
+const SECTIONS_HEIGHTS = {
+  small: 596,
+  medium: 787,
+  large: "100dvh",
+} as const;
 export default function AboutSection() {
-  // Animation Variants
-  const globalVariant = {
-    hidden: { opacity: 0, scale: 0 },
-    show: { opacity: 1, scale: 1 },
-  };
+  const { device } = useMediaQuery();
 
-  // Refs for animations
-  const astroContainerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(astroContainerRef, { once: true, amount: 0.5 });
-
-  const cardContainerRef = useRef<HTMLDivElement>(null);
-  const isCardContainerInView = useInView(cardContainerRef, { once: true, amount: 0.2 });
+  const sectionHeight =
+    device === "mobile"
+      ? SECTIONS_HEIGHTS.small
+      : device === "tablet"
+      ? SECTIONS_HEIGHTS.medium
+      : SECTIONS_HEIGHTS.large;
 
   const targetRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: targetRef, offset: ["start start", "end start"] });
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start start", "end start"],
+  });
 
   // Transformations for scroll-based animations
   const scale = useTransform(scrollYProgress, [0, 0.33], ["1", "0.4"]);
   const rotate = useTransform(scrollYProgress, [0, 0.33], ["0deg", "-22deg"]);
 
-  const scale2 = useTransform(scrollYProgress, [0, 0.33, 0.66], ["0.6", "1", "0.5"]);
-  const rotate2 = useTransform(scrollYProgress, [0, 0.33, 0.66], ["-12deg", "0deg", "12deg"]);
+  const scale2 = useTransform(
+    scrollYProgress,
+    [0, 0.33, 0.66],
+    ["0.6", "1", "0.5"]
+  );
+  const rotate2 = useTransform(
+    scrollYProgress,
+    [0, 0.33, 0.66],
+    ["-12deg", "0deg", "12deg"]
+  );
   const y = useTransform(scrollYProgress, [0, 0.33], [130, 0]);
 
   return (
     <div>
-      <div ref={targetRef} className="relative lg:px-4 h-[300dvh]">
+      <div ref={targetRef} className="relative lg:px-4">
         {/* Section 1 */}
         <motion.div
-          style={{ scale, transformOrigin: "center", rotate }}
-          className="h-screen bg-secondary text-secondary-content sticky top-4"
+          style={{
+            scale,
+            transformOrigin: "center",
+            rotate,
+            height: sectionHeight,
+          }}
+          className=" bg-secondary text-secondary-content sticky top-0 md:top-2 lg:top-4"
         >
-          <motion.div
-            variants={{ show: { transition: { delayChildren: 0.1, staggerChildren: 0.075 } } }}
-            animate={isInView ? "show" : "hidden"}
-            ref={astroContainerRef}
-            className="relative h-full w-full grid lg:grid-cols-3 items-center justify-center max-w-[90%] mx-auto px-12"
-          >
-            <motion.div variants={globalVariant}>
-              <DynamicLottie animationData={astroAnimation} loop />
-            </motion.div>
-            <div className="lg:col-span-2 max-lg:row-start-1 pt-4">
-              <motion.h2
-                variants={globalVariant}
-                className="lg:text-5xl xl:text-7xl font-bold text-3xl mb-2 max-sm:text-center lg:mb-8 sm:text-4xl sm:mb-4"
-              >
-                Who I am?
-              </motion.h2>
-              <motion.p
-                variants={globalVariant}
-                className="lg:text-3xl xl:text-4xl text-lg max-sm:text-center sm:text-2xl font-semibold"
-              >
-                With years of experience in crafting seamless digital experiences, I specialize in
-                building full-stack applications using the latest technologies.
-              </motion.p>
-              <motion.p
-                variants={globalVariant}
-                className="lg:text-3xl xl:text-4xl text-lg max-sm:text-center sm:text-2xl font-semibold"
-              >
-                My passion for clean code and innovation drives me to create visually stunning and
-                user-friendly applications that prioritize performance and accessibility.
-              </motion.p>
+          <div className="relative h-full w-full grid lg:grid-cols-2 xl:grid-cols-3 items-center justify-center sm:max-w-[90%] mx-auto px-12">
+            <DynamicLottie
+              animationData={astroAnimation}
+              loop
+              className="max-lg:w-[80%] max-lg:mx-auto max-lg:-mt-2"
+            />
+            <div className="xl:col-span-2 pt-4 max-lg:text-center">
+              <h2 className="lg:text-5xl xl:text-7xl font-bold text-4xl mb-2 lg:mb-8 sm:text-4xl sm:mb-4">
+                Hello, I’m Abdullah Emad
+              </h2>
+              <p className="text-sm sm:text-lg lg:text-3xl xl:text-4xl text-opacity-60">
+                I’m a 19-year-old full-stack developer passionate about turning
+                creative ideas into functional, visually stunning digital
+                experiences. With expertise in the MERN stack, Next.js, and
+                animations, I love bridging the gap between design and
+                technology. When I’m not coding, you’ll find me exploring ways
+                to make digital interactions more human.
+              </p>
             </div>
-          </motion.div>
+          </div>
         </motion.div>
 
         {/* Section 2 */}
         <motion.div
-          style={{ scale: scale2, transformOrigin: "top center", rotate: rotate2, y }}
-          className="h-screen bg-primary text-primary-content sticky top-4"
+          style={{
+            scale: scale2,
+            transformOrigin: "top center",
+            rotate: rotate2,
+            y,
+            height: sectionHeight,
+          }}
+          className="bg-primary text-primary-content sticky top-0 md:top-2 lg:top-4"
         >
-          <div className="relative h-full w-full grid lg:grid-cols-3 items-center justify-center max-w-[90%] mx-auto px-12">
-            <div className="lg:col-span-2 py-8">
-              <h2 className="lg:text-5xl xl:text-7xl font-bold text-3xl mb-2 max-sm:text-center lg:mb-8 sm:text-4xl sm:mb-4">
-                My Passion
+          <div className="relative h-full w-full grid lg:grid-cols-2 xl:grid-cols-3 items-center justify-center sm:max-w-[90%] mx-auto px-12">
+            <div className="xl:col-span-2 pt-4 max-lg:text-center">
+              <h2 className="lg:text-5xl xl:text-7xl font-bold text-4xl mb-2 lg:mb-8 sm:text-4xl sm:mb-4">
+                Crafting the Future of the Web
               </h2>
-              <p className="lg:text-3xl xl:text-4xl text-lg max-sm:text-center sm:text-2xl font-semibold">
-                Creating seamless digital experiences drives me. I thrive on transforming ideas into
-                functional, beautiful designs with a focus on clean code and innovation.
+              <p className="text-sm sm:text-lg lg:text-3xl xl:text-4xl text-opacity-60">
+                I specialize in building user-friendly interfaces and scalable
+                web apps. From designing seamless user experiences to
+                implementing efficient backends, I bring ideas to life. My
+                toolkit includes Next.js, MongoDB, shadcn UI, and Framer Motion
+                for animations that captivate and engage.
               </p>
             </div>
-            <DynamicLottie animationData={developerThinking} loop />
+            <DynamicLottie
+              animationData={developerThinking}
+              loop
+              className="max-lg:w-[80%] max-lg:mx-auto max-lg:-mt-2"
+            />
           </div>
         </motion.div>
 
         {/* Section 3 */}
-        <div className="min-h-[100dvh] flex flex-col bg-base-100 w-full z-20 sticky p-px">
-          <MaxWidthWrapper className="flex-1 flex flex-col">
-            <div className="flex gap-[-40px] max-sm:flex-col sm:pt-12 pt-8 justify-between lg:pt-24 max-w-[90%] mx-auto lg:mb-24">
-              <div className="max-w-[900px] max-lg:mb-8">
-                <h2 className="xl:text-7xl lg:text-5xl md:text-4xl sm:text-3xl text-2xl font-bold mb-2 lg:mb-8">
-                  How Can I Help You
-                </h2>
-                <p className="xl:text-xl sm:text-lg">
-                  Building your vision into reality with tailored web solutions, we&apos;re here to
-                  transform your ideas into functional, user-friendly digital experiences. With a
-                  focus on clean code and innovation, we deliver high-quality solutions that exceed
-                  your expectations.
-                </p>
-              </div>
-              <Link href={"/services"}>
-                <MagneticRoundedButton parentClassName="ms:ml-auto max-sm:self-end shrink-0 max-sm:size-32 max-lg:text-sm max-lg:size-44 ">
-                  Learn More
-                </MagneticRoundedButton>
-              </Link>
+        <div
+          style={{ height: sectionHeight }}
+          className="flex flex-col bg-base-100 w-full z-20 sticky p-px"
+        >
+          <div className="relative h-full w-full grid lg:grid-cols-2 xl:grid-cols-3 items-center justify-center sm:max-w-[90%] mx-auto px-12">
+            <DynamicLottie
+              animationData={figmaAnimation}
+              loop
+              className="max-lg:w-[80%] max-lg:mx-auto max-lg:-mt-2 bg-black"
+            />
+            <div className="xl:col-span-2 pt-4 max-lg:text-center">
+              <h2 className="lg:text-5xl xl:text-7xl font-bold text-4xl mb-2 lg:mb-8 sm:text-4xl sm:mb-4">
+                Designing for Impact
+              </h2>
+              <p className="text-sm sm:text-lg lg:text-3xl xl:text-4xl text-opacity-60">
+                {`Design is more than just aesthetics—it's about creating
+                intuitive, engaging experiences. With expertise in Figma, I
+                bring ideas to life by crafting wireframes, prototypes, and
+                pixel-perfect designs that resonate with users. From color
+                theory to typography, I ensure every detail is aligned with the
+                brand’s vision and the user's needs`}
+              </p>
             </div>
-
-            <motion.div
-              ref={cardContainerRef}
-              variants={{
-                show: {
-                  transition: {
-                    duration: 0.2,
-                    type: "spring",
-                    delayChildren: 0.1,
-                    staggerChildren: 0.2,
-                  },
-                },
-              }}
-              animate={isCardContainerInView ? "show" : "hidden"}
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 flex-1 items-stretch pb-4"
-            >
-              <motion.div variants={{ show: { opacity: 1, scale: 1 }, hidden: { opacity: 0, scale: 0 } }}>
-                <SkillCard title="Next Js" description="Full-Stack solution" icon="nextjs" />
-              </motion.div>
-              <motion.div variants={{ show: { opacity: 1, scale: 1 }, hidden: { opacity: 0, scale: 0 } }}>
-                <SkillCard title="React Js" description="Front-End solution" icon="react" />
-              </motion.div>
-              <motion.div variants={{ show: { opacity: 1, scale: 1 }, hidden: { opacity: 0, scale: 0 } }}>
-                <SkillCard title="Express" description="Back-End solution" icon="express" />
-              </motion.div>
-            </motion.div>
-          </MaxWidthWrapper>
+          </div>
         </div>
       </div>
     </div>

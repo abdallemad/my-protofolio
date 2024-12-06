@@ -47,7 +47,7 @@ export default function SkillCard({ title, description, icon }: Props) {
       onMouseMove={handelMove}
       onMouseLeave={handleLeave}
       style={{ transformStyle: "preserve-3d", rotateX, rotateY }}
-      className="relative bg-gradient-to-b  p-2 rounded-xl bg-gray-700 group h-full"
+      className="relative bg-gradient-to-b  p-2 rounded-xl bg-transparent shadow-2xl shadow-primary group h-full"
     >
       <div
         style={{
