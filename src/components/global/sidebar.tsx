@@ -9,15 +9,18 @@ import { cn } from "@/lib/utils";
 interface Props {
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+const OPEN_DURATION = 0.8;
+const CLOSE_DURATION = 0.8;
+
 function Sidebar({ setIsSidebarOpen }: Props) {
   const [hoveredLink, setIsHoveredLink] = useState<string | null>(null);
   return (
     <>
       <motion.div
         initial={{height:0}}
-        animate={{height:'fit-content',transition:{duration:0.8,ease:"backOut"}}}
-        exit={{height:0, transition:{duration:.8,ease:"backInOut"}}}
-        transition={{ duration: 0.8, ease: "backInOut" }}
+        animate={{height:'fit-content',transition:{duration:OPEN_DURATION,ease:"backOut"}}}
+        exit={{height:0, transition:{duration:CLOSE_DURATION,ease:"backInOut"}}}
         className="fixed inset-x-0 top-0 bg-zinc-900 text-zinc-400 overflow-hidden z-[9998]"
       >
         <MaxWidthWrapper className="pt-24  pb-4">
@@ -47,9 +50,8 @@ function Sidebar({ setIsSidebarOpen }: Props) {
 
       <motion.div
         initial={{height:0}}
-        animate={{height:'100dvh',transition:{duration:1.4,ease:"backOut"}}}
-        exit={{height:0, transition:{duration:.5,ease:"backInOut"}}}
-        transition={{ duration: 0.5, ease: "backInOut" }}
+        animate={{height:'100dvh',transition:{duration:OPEN_DURATION + .4,ease:"backOut"}}}
+        exit={{height:0, transition:{duration:CLOSE_DURATION - .3,ease:"backInOut"}}}
         className="bg-gray-300/30 backdrop-blur-md fixed inset-0 z-[9997]"
       />
     </>

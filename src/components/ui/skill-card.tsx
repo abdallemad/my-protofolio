@@ -3,13 +3,12 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { SiExpress } from "react-icons/si";
 import { FaReact } from "react-icons/fa";
 import { RiNextjsFill } from "react-icons/ri";
-
+import { cn } from "@/lib/utils";
 interface Props {
-  title: string;
-  description: string;
-  icon: "react" | "nextjs" | "express";
+  className?:string,
+  children?:React.ReactNode
 }
-export default function SkillCard({ title, description, icon }: Props) {
+export default function SkillCard({ className, children }: Props) {
   const ref = useRef<HTMLDivElement>(null);
 
   const x = useMotionValue(0);
@@ -47,47 +46,16 @@ export default function SkillCard({ title, description, icon }: Props) {
       onMouseMove={handelMove}
       onMouseLeave={handleLeave}
       style={{ transformStyle: "preserve-3d", rotateX, rotateY }}
-      className="relative bg-gradient-to-b  p-2 rounded-xl bg-transparent shadow-2xl shadow-primary group h-full"
+      className="relative bg-gradient-to-b  p-2 rounded-xl shadow-2xl bg-neutral-400 shadow-neutral-400 group h-full"
     >
       <div
         style={{
           transformStyle: "preserve-3d",
           transform: "translateZ(75px)",
         }}
-        className="p-4 h-full rounded-xl bg-base-100 shadow-lg group-hover:scale-1.1 duration-100 transition-all"
+        className={cn("p-4 h-full rounded-xl bg-base-200 shadow-lg group-hover:scale-1.1 duration-100 transition-all",className)}
       >
-        <div className="flex lg:flex-col lg:text-center items-center gap-4 lg:pb-4">
-          {icon === "nextjs" ? (
-            <RiNextjsFill
-              style={{
-                transformStyle: "preserve-3d",
-                transform: "translateZ(85px)",
-              }}
-              className="text-6xl lg:text-9xl block"
-            />
-          ) : icon === "express" ? (
-            <SiExpress
-              style={{
-                transformStyle: "preserve-3d",
-                transform: "translateZ(85px)",
-              }}
-              className="text-6xl lg:text-9xl block"
-            />
-          ) : (
-            <FaReact
-              style={{
-                transformStyle: "preserve-3d",
-                transform: "translateZ(85px)",
-              }}
-              className="text-6xl lg:text-9xl block"
-            />
-          )}
-          <div>
-            <p className=" font-bold text-2xl lg:text-4xl">{title}</p>
-            <p className=" font-semibold text-lg lg:text-xl">{description}</p>
-            <p className=" font-light text-xl">Unique Solution</p>
-          </div>
-        </div>
+        {children}
       </div>
     </motion.div>
   );
