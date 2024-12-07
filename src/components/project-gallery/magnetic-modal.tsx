@@ -12,13 +12,14 @@ function ProjectGallery() {
   const [modalOpen, setModalOpen] = useState(false);
   const animationFrame = useRef<number | null>(null);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
+  const handelMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return;
     const { clientX, clientY } = e;
     const { left, top } = containerRef.current.getBoundingClientRect();
     const mouseProgressX = clientX - left;
     const mouseProgressY = clientY - top;
 
+    // Debounce updates using requestAnimationFrame
     if (animationFrame.current) {
       cancelAnimationFrame(animationFrame.current);
     }
@@ -47,7 +48,7 @@ function ProjectGallery() {
           </h2>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl">
             Here’s a selection of projects I’ve worked on, showcasing my
-            expertise in web development, UI/UX design.
+            expertise in web development, UI/UX design
           </p>
         </div>
         <div
@@ -56,40 +57,6 @@ function ProjectGallery() {
           ref={containerRef}
           className="min-h-96 mb-24 relative flex flex-col"
         >
-          {/* VIEW BUTTON */}
-          <AnimatePresence mode="wait">
-            {modalOpen && (
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  scale: 0,
-                  translateX: "-50%",
-                  translateY: "-50%",
-                }}
-                animate={{
-                  left: modalPosition.x,
-                  top: modalPosition.y,
-                  opacity: 1,
-                  scale: 1,
-                }}
-                transition={{
-                  left: {
-                    type: "tween",
-                    duration: 0.02, // Faster tracking for the button
-                  },
-                  top: {
-                    type: "tween",
-                    duration: 0.02,
-                  },
-                }}
-                exit={{ opacity: 0, scale: 0 }}
-                className="absolute size-24 z-20 bg-blue-500 pointer-events-none rounded-full font-bold text-white grid place-items-center"
-              >
-                View
-              </motion.div>
-            )}
-          </AnimatePresence>
-
           {/* MODAL */}
           <AnimatePresence mode="wait">
             {modalOpen && (
@@ -107,14 +74,9 @@ function ProjectGallery() {
                   scale: 1,
                 }}
                 transition={{
-                  left: {
-                    type: "tween",
-                    duration: 0.1, // Slightly slower tracking for the modal
-                  },
-                  top: {
-                    type: "tween",
-                    duration: 0.1,
-                  },
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 20,
                 }}
                 exit={{ opacity: 0, scale: 0 }}
                 className="absolute w-[500px] h-[400px] pointer-events-none overflow-hidden"
@@ -122,7 +84,7 @@ function ProjectGallery() {
                 <motion.div
                   animate={{
                     x: `-${hoveredProjectIndex}00%`,
-                    transition: { type: "spring", duration: 0.7 },
+                    transition: { type: "spring", duration: 0.5 },
                   }}
                   className="flex w-full h-full"
                 >
@@ -144,19 +106,47 @@ function ProjectGallery() {
               </motion.div>
             )}
           </AnimatePresence>
+          {/* VIEW BUTTON */}
+          <AnimatePresence mode="wait">
+            {modalOpen && (
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  scale: 0,
+                  translateX: "-50%",
+                  translateY: "-50%",
+                }}
+                animate={{
+                  left: modalPosition.x,
+                  top: modalPosition.y,
+                  opacity: 1,
+                  scale: 1,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 20,
+                }}
+                exit={{ opacity: 0, scale: 0 }}
+                className="absolute size-24 z-20 bg-blue-500 pointer-events-none rounded-full font-bold text-white grid place-items-center"
+              >
+                View
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           <div>
             {projects.map((project) => (
               <div
                 key={project.label}
-                onMouseMove={handleMouseMove}
+                onMouseMove={handelMouseMove}
                 onMouseOver={() => setHoveredProjectIndex(project.index)}
                 className="w-full py-8 px-6 flex items-center justify-between group cursor-pointer border-b-2 hover:border-b-gray-700 duration-500 transition-all hover:px-24 hover:text-gray-500"
               >
                 <h4 className="text-2xl sm:text-3xl lg:text-4xl xl:text-6xl font-bold capitalize">
                   {project.label}
                 </h4>
-                <p className="font-semibold text-2xl">2023</p>
+                <p className="font-semibold text-2xl ">2023</p>
               </div>
             ))}
           </div>
