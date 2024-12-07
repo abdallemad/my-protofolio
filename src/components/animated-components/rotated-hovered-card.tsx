@@ -8,7 +8,7 @@ interface Props {
   className?:string,
   children?:React.ReactNode
 }
-export default function SkillCard({ className, children }: Props) {
+export default function RotatedHoveredCard({ className, children }: Props) {
   const ref = useRef<HTMLDivElement>(null);
 
   const x = useMotionValue(0);

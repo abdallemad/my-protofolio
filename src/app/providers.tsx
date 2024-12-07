@@ -1,11 +1,10 @@
 'use client'
-
 // @ts-expect-error:commonjs
 import { ReactLenis } from "lenis/dist/lenis-react";
 
 function Providers({children}:{children:React.ReactNode}) {
   return (
-    <div>
+    <main>
       <ReactLenis
         root
         options={{
@@ -17,7 +16,7 @@ function Providers({children}:{children:React.ReactNode}) {
       >
         {children}
       </ReactLenis>
-    </div>
+    </main>
   )
 }
 

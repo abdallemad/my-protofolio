@@ -1,3 +1,10 @@
+
+import arakilImage from '../../public/images/arakil-alkil.png'
+import caseCobraImage from '../../public/images/case-cobra.png'
+import comfyStoreImage from '../../public/images/comfy-store.png'
+import jobifyAppImage from '../../public/images/jobify-app.png'
+import pingPandaImage from '../../public/images/ping-panda.png'
+
 export const links = [
   {
     label:'home',
@@ -21,7 +28,36 @@ export const links = [
   }
 ]
 export const projects = [
-  
+  {
+    label:"ARAKEIL ALKhil",
+    primaryColor:"#ef9995",
+    image:arakilImage,
+    index:0
+  },
+  {
+    label:"PING PANDA",
+    primaryColor:"#3659b1",
+    image:pingPandaImage,
+    index:1
+  },
+  {
+    label:"CASE COBRA",
+    primaryColor:"#16a34a",
+    image:caseCobraImage,
+    index:2
+  },
+  {
+    label:"COMFY STORE",
+    primaryColor:"#3b82f6",
+    image:comfyStoreImage,
+    index:3
+  },
+  {
+    label:"JOBIFY APP",
+    primaryColor:"#313131",
+    image:jobifyAppImage,
+    index:4
+  }
 ]
 export const socialLinks = [
   {

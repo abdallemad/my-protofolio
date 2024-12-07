@@ -49,7 +49,7 @@ export default function AboutSection() {
   const y = useTransform(scrollYProgress, [0, 0.33], [130, 0]);
 
   return (
-    <div>
+    <section>
       <div ref={targetRef} className="relative lg:px-4">
         {/* Section 1 */}
         <motion.div
@@ -142,6 +142,6 @@ export default function AboutSection() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

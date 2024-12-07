@@ -50,7 +50,7 @@ function HeroSection() {
     }
   }, [animate]);
   return (
-    <div className="relative pb-24 overflow-x-hidden" ref={scope}>
+    <section className="relative pb-24 overflow-x-hidden" ref={scope}>
       <MaxWidthWrapper className="pt-20 sm:pt-[12dvh] lg:pt-[11dvh] mb-[10dvh]">
         <motion.h1
           style={{ opacity: 0, x: 350 }}
@@ -116,7 +116,7 @@ function HeroSection() {
           className=" text-sm sm:text-xl lg:text-2xl xl:text-4xl uppercase"
         />
       </motion.div>
-    </div>
+    </section>
   );
 }
 

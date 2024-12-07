@@ -1,7 +1,7 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
 import MaxWidthWrapper from "../global/max-width-wrapper";
-import SkillCard from "../ui/skill-card";
+import RotatedHoveredCard from "../animated-components/rotated-hovered-card";
 import Link from "next/link";
 import MagneticRoundedButton from "../animated-components/magnetic-rounded-button";
 import { useRef } from "react";
@@ -24,11 +24,9 @@ function ServicesSection() {
               How Can I Help You
             </h2>
             <p className="text-sm sm:text-lg md:text-xl lg:text-2xl">
-              Building your vision into reality with tailored web solutions,
-              we&apos;re here to transform your ideas into functional,
-              user-friendly digital experiences. With a focus on clean code and
-              innovation, we deliver high-quality solutions that exceed your
-              expectations.
+              I provide a range of services to help you achieve your goals, from
+              developing scalable web applications to designing user-friendly
+              interfaces and animations.
             </p>
           </div>
           <motion.div style={{ x, y: x }} className="max-lg:self-end">
@@ -41,7 +39,7 @@ function ServicesSection() {
         </div>
         <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
           <div>
-            <SkillCard className="">
+            <RotatedHoveredCard className="">
               <FaCode className="size-40 max-xl:mx-auto" />
               <div className="text-center xl:text-left">
                 <h4 className="font-bold sm:text-xl md:text-2xl lg:text-3xl xl:text-5xl mb-2 sm:mb-4 lg:mb-6">
@@ -55,10 +53,10 @@ function ServicesSection() {
                   Learn More
                 </button>
               </div>
-            </SkillCard>
+            </RotatedHoveredCard>
           </div>
           <div>
-            <SkillCard className="">
+            <RotatedHoveredCard className="">
               <FaServer className="size-40 max-xl:mx-auto" />
               <div className="text-center xl:text-left">
                 <h4 className="font-bold sm:text-xl md:text-2xl lg:text-3xl xl:text-5xl mb-2 sm:mb-4 lg:mb-6">
@@ -72,10 +70,10 @@ function ServicesSection() {
                   Learn More
                 </button>
               </div>
-            </SkillCard>
+            </RotatedHoveredCard>
           </div>
           <div className="lg:col-span-2 xl:col-span-1">
-            <SkillCard className="max-xl:flex lg:gap-2">
+            <RotatedHoveredCard className="max-xl:flex lg:gap-2">
               <FaPalette className="size-40" />
               <div>
                 <h4 className="font-bold sm:text-xl md:text-2xl lg:text-3xl xl:text-5xl mb-2 sm:mb-4 lg:mb-6">
@@ -89,7 +87,7 @@ function ServicesSection() {
                   Learn More
                 </button>
               </div>
-            </SkillCard>
+            </RotatedHoveredCard>
           </div>
         </div>
       </MaxWidthWrapper>
