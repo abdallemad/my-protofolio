@@ -21,11 +21,11 @@ function Sidebar({ setIsSidebarOpen }: Props) {
         initial={{height:0}}
         animate={{height:'fit-content',transition:{duration:OPEN_DURATION,ease:"backOut"}}}
         exit={{height:0, transition:{duration:CLOSE_DURATION,ease:"backInOut"}}}
-        className="fixed inset-x-0 top-0 bg-zinc-900 text-zinc-400 overflow-hidden z-[9998]"
+        className="fixed inset-x-0 top-0 bg-zinc-400 text-zinc-900 overflow-hidden z-[9998]"
       >
         <MaxWidthWrapper className="pt-24  pb-4">
           <h2 className="mb-2">Navigation</h2>
-          <div className="w-full h-px bg-zinc-400 mb-6" />
+          <div className="w-full h-px bg-zinc-900 mb-6" />
           <div className="flex items-center gap-8">
             <div className="lg:col-span-2 grid md:grid-cols-2 lg:grid-cols-3 font-bold text-5xl lg:text-7xl uppercase gap-x-6 gap-y-4 flex-1">
               {links.map((link) => {
@@ -34,7 +34,7 @@ function Sidebar({ setIsSidebarOpen }: Props) {
                   <Link
                     href={link.href}
                     key={link.href}
-                    className={cn('transition-all duration-500 w-full',{ "blur-sm": isHovered })}
+                    className={cn('transition-all duration-500 w-full',{ "blur-md": isHovered })}
                     onMouseOver={() => setIsHoveredLink(link.label)}
                     onMouseLeave={() => setIsHoveredLink(null)}
                   >
