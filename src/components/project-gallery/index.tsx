@@ -4,11 +4,20 @@ import { AnimatePresence, motion } from "framer-motion";
 import MaxWidthWrapper from "../global/max-width-wrapper";
 import { projects } from "@/utils/links";
 import Image from "next/image";
+
+
 const MODAL_SIZES = {
-  large: {},
-  xLarge: {},
+  large: {
+    width: 400,
+    height: 270
+  },
+  xLarge: {
+    width:500,
+    height:400
+  },
 };
 function ProjectGallery() {
+
   const containerRef = useRef<HTMLDivElement>(null);
   const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
   const [hoveredProjectIndex, setHoveredProjectIndex] = useState<number>(0);

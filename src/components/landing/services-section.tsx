@@ -49,9 +49,6 @@ function ServicesSection() {
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed,
                   incidunt.
                 </p>
-                <button className="w-full btn btn-outline px-4 py-2 duration-500 ease-in-out">
-                  Learn More
-                </button>
               </div>
             </RotatedHoveredCard>
           </div>
@@ -66,9 +63,6 @@ function ServicesSection() {
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed,
                   incidunt.
                 </p>
-                <button className="w-full btn btn-outline px-4 py-2 duration-500 ease-in-out">
-                  Learn More
-                </button>
               </div>
             </RotatedHoveredCard>
           </div>
@@ -83,9 +77,6 @@ function ServicesSection() {
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed,
                   incidunt.
                 </p>
-                <button className="xl:w-full btn btn-outline px-4 py-2 duration-500 ease-in-out">
-                  Learn More
-                </button>
               </div>
             </RotatedHoveredCard>
           </div>
