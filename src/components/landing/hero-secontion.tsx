@@ -40,7 +40,7 @@ function HeroSection() {
           { duration: 0.6, type: "spring" }
         );
       } catch (error) {
-        throw new Error('there is one class messing up');
+        throw new Error("there is one class messing up");
       }
     };
     try {
@@ -98,22 +98,22 @@ function HeroSection() {
 
       <motion.div
         style={{ scaleY: 0, y: 100, rotateX: 90, translateZ: 100 }}
-        className="w-screen h-10 sm:h-14  lg:h-20 xl:h-24 bg-primary text-primary-content mb-2 marque-1 flex items-center text-2xl font-bold z-[999] select-none"
+        className="w-screen h-10 sm:h-14 md:h-16  lg:h-20 xl:h-22 bg-primary text-primary-content mb-2 marque-1 flex items-center text-2xl font-bold z-[999] select-none"
       >
         <VelocityScroll
           default_velocity={0.3}
-          className=" text-sm sm:text-xl lg:text-2xl xl:text-4xl uppercase"
-          text="I design and develop stunning, high-performance web applications tailored to your unique needs. Let’s create something extraordinary together"
+          className=" text-sm sm:text-xl lg:text-2xl xl:text-3xl uppercase"
+          text="height quality and performance🚀 cool animations🔥 SEO optimize📈 "
         />
       </motion.div>
       <motion.div
         style={{ scaleY: 0, y: 100, rotateX: 90, translateZ: 100 }}
-        className="w-screen h-10 sm:h-14  lg:h-20 xl:h-24 bg-secondary text-secondary-content mb-2 marque-2 flex items-center text-2xl font-bold z-[999] select-none"
+        className="w-screen h-10 sm:h-14 md:h-16  lg:h-20 xl:h-22 bg-secondary text-secondary-content mb-2 marque-2 flex items-center text-2xl font-bold z-[999] select-none"
       >
         <VelocityScroll
           default_velocity={-0.6}
-          text="Let's build something cool✨  "
-          className=" text-sm sm:text-xl lg:text-2xl xl:text-4xl uppercase"
+          text="Let's build something cool✨ and beautiful🎨  "
+          className=" text-sm sm:text-xl lg:text-2xl xl:text-3xl uppercase"
         />
       </motion.div>
     </section>
