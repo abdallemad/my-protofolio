@@ -17,11 +17,11 @@ function Footer() {
               hesitate to get in touch.
             </p>
           </div>
-          <Link href={"/contact"}>
+          {/* <Link href={"/contact"}>
             <MagneticRoundedButton parentClassName="flex-1">
               <span className="capitalize">Contact Me</span>
             </MagneticRoundedButton>
-          </Link>
+          </Link> */}
         </div>
         <div className="w-full h-1 bg-neutral-400 mt-8"></div>
         <div className="grid grid-cols-2 max-w-[70%] gap-4 mt-8">

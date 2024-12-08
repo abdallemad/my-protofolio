@@ -6,9 +6,10 @@ import { RiNextjsFill } from "react-icons/ri";
 import { cn } from "@/lib/utils";
 interface Props {
   className?:string,
-  children?:React.ReactNode
+  children?:React.ReactNode;
+  backDropClassName?:string,
 }
-export default function RotatedHoveredCard({ className, children }: Props) {
+export default function RotatedHoveredCard({ className, children,backDropClassName }: Props) {
   const ref = useRef<HTMLDivElement>(null);
 
   const x = useMotionValue(0);
@@ -46,14 +47,14 @@ export default function RotatedHoveredCard({ className, children }: Props) {
       onMouseMove={handelMove}
       onMouseLeave={handleLeave}
       style={{ transformStyle: "preserve-3d", rotateX, rotateY }}
-      className="relative bg-gradient-to-b  p-2 rounded-xl shadow-2xl bg-neutral-400 shadow-neutral-400 group h-full"
+      className={cn("relative p-2 rounded-xl bg-neutral-400 group h-full",backDropClassName)}
     >
       <div
         style={{
           transformStyle: "preserve-3d",
           transform: "translateZ(75px)",
         }}
-        className={cn("p-4 h-full rounded-xl bg-base-200 shadow-lg group-hover:scale-1.1 duration-100 transition-all",className)}
+        className={cn("p-4 group h-full rounded-xl bg-base-200 shadow-lg",className)}
       >
         {children}
       </div>

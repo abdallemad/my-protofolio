@@ -1,45 +1,12 @@
 "use client";
-import React, { useRef, useState, useEffect } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import MaxWidthWrapper from "../global/max-width-wrapper";
-import { projects } from "@/utils/links";
-import Image from "next/image";
-
-function ProjectGallery() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
-  const [hoveredProjectIndex, setHoveredProjectIndex] = useState<number>(0);
-  const [modalOpen, setModalOpen] = useState(false);
-  const animationFrame = useRef<number | null>(null);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
-    const { clientX, clientY } = e;
-    const { left, top } = containerRef.current.getBoundingClientRect();
-    const mouseProgressX = clientX - left;
-    const mouseProgressY = clientY - top;
-
-    if (animationFrame.current) {
-      cancelAnimationFrame(animationFrame.current);
-    }
-    animationFrame.current = requestAnimationFrame(() => {
-      setModalPosition({ x: mouseProgressX, y: mouseProgressY });
-    });
-  };
-
-  const handleMouseEnter = () => setModalOpen(true);
-  const handleMouseLeave = () => setModalOpen(false);
-
-  useEffect(() => {
-    return () => {
-      if (animationFrame.current) {
-        cancelAnimationFrame(animationFrame.current);
-      }
-    };
-  }, []);
-
+import ProjectGallery from "./large-modal";
+import { useMediaQuery } from "react-responsive";
+import SmallProjectsGallery from "./small-project-gallery";
+export default function ProjectGalleryWrapper() {
+  const isLarge = useMediaQuery({query:'(min-width: 1024px)'});
   return (
-    <section className="overflow-hidden">
+    <section>
       <MaxWidthWrapper>
         <div className="text-center max-w-[900px] mx-auto">
           <h2 className="text-2xl sm:text-4xl lg:text-5xl xl:text-7xl font-bold mb-2 sm:mb-4 lg:mb-6 xl:mb-8">
@@ -47,123 +14,17 @@ function ProjectGallery() {
           </h2>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl">
             Here’s a selection of projects I’ve worked on, showcasing my
-            expertise in web development, UI/UX design.
+            expertise in web development, UI/UX design
           </p>
         </div>
-        <div
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          ref={containerRef}
-          className="min-h-96 mb-24 relative flex flex-col"
-        >
-          {/* VIEW BUTTON */}
-          <AnimatePresence mode="wait">
-            {modalOpen && (
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  scale: 0,
-                  translateX: "-50%",
-                  translateY: "-50%",
-                }}
-                animate={{
-                  left: modalPosition.x,
-                  top: modalPosition.y,
-                  opacity: 1,
-                  scale: 1,
-                }}
-                transition={{
-                  left: {
-                    type: "tween",
-                    duration: 0.02, // Faster tracking for the button
-                  },
-                  top: {
-                    type: "tween",
-                    duration: 0.02,
-                  },
-                }}
-                exit={{ opacity: 0, scale: 0 }}
-                className="absolute size-24 z-20 bg-blue-500 pointer-events-none rounded-full font-bold text-white grid place-items-center"
-              >
-                View
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* MODAL */}
-          <AnimatePresence mode="wait">
-            {modalOpen && (
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  scale: 0,
-                  translateX: "-50%",
-                  translateY: "-50%",
-                }}
-                animate={{
-                  left: modalPosition.x,
-                  top: modalPosition.y,
-                  opacity: 1,
-                  scale: 1,
-                }}
-                transition={{
-                  left: {
-                    type: "tween",
-                    duration: 0.1, // Slightly slower tracking for the modal
-                  },
-                  top: {
-                    type: "tween",
-                    duration: 0.1,
-                  },
-                }}
-                exit={{ opacity: 0, scale: 0 }}
-                className="absolute w-[500px] h-[400px] pointer-events-none overflow-hidden"
-              >
-                <motion.div
-                  animate={{
-                    x: `-${hoveredProjectIndex}00%`,
-                    transition: { type: "spring", duration: 0.7 },
-                  }}
-                  className="flex w-full h-full"
-                >
-                  {projects.map((project) => (
-                    <div
-                      key={project.index}
-                      style={{ background: project.primaryColor }}
-                      className="w-full h-full shrink-0 grid place-items-center"
-                    >
-                      <Image
-                        src={project.image}
-                        width={500 - 30}
-                        height={400}
-                        alt={project.label}
-                      />
-                    </div>
-                  ))}
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          <div>
-            {projects.map((project) => (
-              <div
-                key={project.label}
-                onMouseMove={handleMouseMove}
-                onMouseOver={() => setHoveredProjectIndex(project.index)}
-                className="w-full py-8 px-6 flex items-center justify-between group cursor-pointer border-b-2 hover:border-b-gray-700 duration-500 transition-all hover:px-24 hover:text-gray-500"
-              >
-                <h4 className="text-2xl sm:text-3xl lg:text-4xl xl:text-6xl font-bold capitalize">
-                  {project.label}
-                </h4>
-                <p className="font-semibold text-2xl">2023</p>
-              </div>
-            ))}
-          </div>
-        </div>
       </MaxWidthWrapper>
+      {
+        isLarge ? (
+          <ProjectGallery />
+        ) : (
+          <SmallProjectsGallery />
+        )
+      }
     </section>
   );
 }
-
-export default ProjectGallery;

@@ -5,13 +5,13 @@ import MaxWidthWrapper from "../global/max-width-wrapper";
 import { projects } from "@/utils/links";
 import Image from "next/image";
 
-function ProjectGallery() {
+function LargeModal() {
+  const showLargeModalWidth = 1024;
   const containerRef = useRef<HTMLDivElement>(null);
   const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
   const [hoveredProjectIndex, setHoveredProjectIndex] = useState<number>(0);
   const [modalOpen, setModalOpen] = useState(false);
   const animationFrame = useRef<number | null>(null);
-
   const handelMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return;
     const { clientX, clientY } = e;
@@ -40,17 +40,8 @@ function ProjectGallery() {
   }, []);
 
   return (
-    <section className="overflow-hidden">
-      <MaxWidthWrapper>
-        <div className="text-center max-w-[900px] mx-auto">
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl xl:text-7xl font-bold mb-2 sm:mb-4 lg:mb-6 xl:mb-8">
-            Projects
-          </h2>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl">
-            Here’s a selection of projects I’ve worked on, showcasing my
-            expertise in web development, UI/UX design
-          </p>
-        </div>
+    <section>
+      <MaxWidthWrapper className="">
         <div
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
@@ -79,7 +70,7 @@ function ProjectGallery() {
                   damping: 20,
                 }}
                 exit={{ opacity: 0, scale: 0 }}
-                className="absolute w-[500px] h-[400px] pointer-events-none overflow-hidden"
+                className="absolute xl:w-[500px] xl:h-[400px] w-[400px] h-[270px] pointer-events-none overflow-hidden"
               >
                 <motion.div
                   animate={{
@@ -99,6 +90,7 @@ function ProjectGallery() {
                         width={500 - 30}
                         height={400}
                         alt={project.label}
+                        className="xl:w-[calc(100%-1rem)] lg:w-[calc(100%-0.5rem)]"
                       />
                     </div>
                   ))}
@@ -121,14 +113,17 @@ function ProjectGallery() {
                   top: modalPosition.y,
                   opacity: 1,
                   scale: 1,
+                  background: projects.filter(
+                    (project) => project.index == hoveredProjectIndex
+                  )[0].primaryColor,
                 }}
                 transition={{
                   type: "spring",
-                  stiffness: 300,
-                  damping: 20,
+                  stiffness: 400,
+                  damping: 10,
                 }}
                 exit={{ opacity: 0, scale: 0 }}
-                className="absolute size-24 z-20 bg-blue-500 pointer-events-none rounded-full font-bold text-white grid place-items-center"
+                className="absolute xl:size-24 size-20 z-20 pointer-events-none rounded-full font-bold text-white grid place-items-center"
               >
                 View
               </motion.div>
@@ -156,4 +151,4 @@ function ProjectGallery() {
   );
 }
 
-export default ProjectGallery;
+export default LargeModal;
