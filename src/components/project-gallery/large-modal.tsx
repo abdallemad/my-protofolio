@@ -1,16 +1,25 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
 import MaxWidthWrapper from "../global/max-width-wrapper";
 import { projects } from "@/utils/links";
 import Image from "next/image";
-
+import Modal from "./modal";
 function LargeModal() {
-  const showLargeModalWidth = 1024;
   const containerRef = useRef<HTMLDivElement>(null);
-  const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
-  const [hoveredProjectIndex, setHoveredProjectIndex] = useState<number>(0);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const animatedX = useSpring(x, { stiffness: 300, damping: 20 });
+  const animatedY = useSpring(y, { stiffness: 300, damping: 20 });
+  const animatedButtonX = useSpring(x, { stiffness: 300, damping: 10 });
+  const animatedButtonY = useSpring(y, { stiffness: 300, damping: 10 });
   const [modalOpen, setModalOpen] = useState(false);
+  const [hoveredProjectIndex, setHoveredProjectIndex] = useState<number>(0);
   const animationFrame = useRef<number | null>(null);
   const handelMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return;
@@ -24,13 +33,15 @@ function LargeModal() {
       cancelAnimationFrame(animationFrame.current);
     }
     animationFrame.current = requestAnimationFrame(() => {
-      setModalPosition({ x: mouseProgressX, y: mouseProgressY });
+      x.set(mouseProgressX);
+      y.set(mouseProgressY);
     });
   };
 
   const handleMouseEnter = () => setModalOpen(true);
   const handleMouseLeave = () => setModalOpen(false);
 
+  console.log("rendering large modal");
   useEffect(() => {
     return () => {
       if (animationFrame.current) {
@@ -47,88 +58,13 @@ function LargeModal() {
           onMouseLeave={handleMouseLeave}
           ref={containerRef}
           className="min-h-96 mb-24 relative flex flex-col"
-        >
-          {/* MODAL */}
-          <AnimatePresence mode="wait">
-            {modalOpen && (
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  scale: 0,
-                  translateX: "-50%",
-                  translateY: "-50%",
-                }}
-                animate={{
-                  left: modalPosition.x,
-                  top: modalPosition.y,
-                  opacity: 1,
-                  scale: 1,
-                }}
-                transition={{
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 20,
-                }}
-                exit={{ opacity: 0, scale: 0 }}
-                className="absolute xl:w-[500px] xl:h-[400px] w-[400px] h-[270px] pointer-events-none overflow-hidden"
-              >
-                <motion.div
-                  animate={{
-                    x: `-${hoveredProjectIndex}00%`,
-                    transition: { type: "spring", duration: 0.5 },
-                  }}
-                  className="flex w-full h-full"
-                >
-                  {projects.map((project) => (
-                    <div
-                      key={project.index}
-                      style={{ background: project.primaryColor }}
-                      className="w-full h-full shrink-0 grid place-items-center"
-                    >
-                      <Image
-                        src={project.image}
-                        width={500 - 30}
-                        height={400}
-                        alt={project.label}
-                        className="xl:w-[calc(100%-1rem)] lg:w-[calc(100%-0.5rem)]"
-                      />
-                    </div>
-                  ))}
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-          {/* VIEW BUTTON */}
-          <AnimatePresence mode="wait">
-            {modalOpen && (
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  scale: 0,
-                  translateX: "-50%",
-                  translateY: "-50%",
-                }}
-                animate={{
-                  left: modalPosition.x,
-                  top: modalPosition.y,
-                  opacity: 1,
-                  scale: 1,
-                  background: projects.filter(
-                    (project) => project.index == hoveredProjectIndex
-                  )[0].primaryColor,
-                }}
-                transition={{
-                  type: "spring",
-                  stiffness: 400,
-                  damping: 10,
-                }}
-                exit={{ opacity: 0, scale: 0 }}
-                className="absolute xl:size-24 size-20 z-20 pointer-events-none rounded-full font-bold text-white grid place-items-center"
-              >
-                View
-              </motion.div>
-            )}
-          </AnimatePresence>
+          >
+          <Modal
+            hoveredProjectIndex={hoveredProjectIndex}
+            modalOpen={modalOpen}
+            x={x}
+            y={y}
+            />
 
           <div>
             {projects.map((project) => (
