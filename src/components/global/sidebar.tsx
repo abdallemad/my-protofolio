@@ -52,7 +52,7 @@ function Sidebar({ setIsSidebarOpen }: Props) {
         initial={{height:0}}
         animate={{height:'100dvh',transition:{duration:OPEN_DURATION + .4,ease:"backOut"}}}
         exit={{height:0, transition:{duration:CLOSE_DURATION - .3,ease:"backInOut"}}}
-        className="bg-gray-300/30 backdrop-blur-md fixed inset-0 z-[9997]"
+        className="bg-gray-900/30 backdrop-blur-md fixed inset-0 z-[9997]"
       />
     </>
   );

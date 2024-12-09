@@ -1,14 +1,43 @@
 "use client";
 import { useState } from "react";
+import { cva, type VariantProps } from "class-variance-authority"
 import React from "react";
 import Magnetic from "./magnetic";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+
+// rounded-full 
+// normal button
+// primary secondary
+
+const MagneticButtonVariants = cva('overflow-hidden relative rounded-full cursor-pointer',{
+  variants:{
+    colors:{
+      primary:'',
+      secondary:'',
+    },
+    sizes:{
+      sm:"",
+      base:"",
+      lg:'',
+    },
+    shape:{
+      button:'',
+      circle:'aspect-square'
+    }
+  },
+  defaultVariants:{
+
+  }
+})
+
+
 interface Props {
   space?: number;
   secondSpace?: number;
   parentClassName?: string;
   backClassName?: string;
+  className?:string,
   children: React.ReactNode;
 }
 function MagneticRoundedButton({
@@ -16,6 +45,7 @@ function MagneticRoundedButton({
   space = 40,
   secondSpace = 30,
   parentClassName,
+  className,
   backClassName
 }: Props) {
   const [isHovered, setIsHovered] = useState(false);

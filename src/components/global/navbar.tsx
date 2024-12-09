@@ -67,14 +67,12 @@ function Navbar() {
               );
             })}
           </ul>
-          <MagneticLink className=" block lg:hidden">
             <button
               onClick={() =>{ setIsSidebarOpen(!isSidebarOpen); setShowSidebarButton(true)}}
-              className="cursor-pointer transition-colors duration-500 rounded-full hover:bg-[#cdcdcd] hover:text-base-200 p-2 border-2 border-[#cdcdcd]"
+              className="cursor-pointer transition-colors duration-500 rounded-full hover:bg-[#cdcdcd] hover:text-base-200 p-2 border-2 border-[#181010] lg:hidden"
             >
-              <Menu className="block lg:hidden text-6 sm:text-8 " />
+              Menu
             </button>
-          </MagneticLink>
         </MaxWidthWrapper>
       </nav>
       <AnimatePresence mode="wait">
@@ -90,7 +88,7 @@ function Navbar() {
             className="fixed top-4 sm:top-8 sm:right-10 right-4 z-[9999]"
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           >
-            <MagneticRoundedButton space={20} secondSpace={10} parentClassName=" bg-primary rounded-full z-[999] inline-block cursor-pointer size-12 sm:size-24">
+            <MagneticRoundedButton space={20} secondSpace={10} className="bg-primary rounded-full z-[999] inline-block cursor-pointer size-12 sm:size-24" parentClassName=" bg-primary rounded-full z-[999] inline-block cursor-pointer size-12 sm:size-24">
               <Menu className="text-primary-content sm:size-8 size-4" />
             </MagneticRoundedButton>
           </motion.div>

@@ -1,9 +1,11 @@
 "use client";
 import MaxWidthWrapper from "@/components/global/max-width-wrapper";
+import MainHeading from "../typography/main-heading";
 import { useAnimate, motion } from "framer-motion";
 import { useEffect } from "react";
 import { VelocityScroll } from "@/components/ui/scroll-based-velocity";
 import MagneticRoundedButton from "@/components/animated-components/magnetic-rounded-button";
+import SubHeading from "../typography/sub-heading";
 function HeroSection() {
   const [scope, animate] = useAnimate();
   useEffect(() => {
@@ -52,20 +54,24 @@ function HeroSection() {
   return (
     <section className="relative pb-24 overflow-x-hidden" ref={scope}>
       <MaxWidthWrapper className="pt-20 sm:pt-[12dvh] lg:pt-[11dvh] mb-[10dvh]">
-        <motion.h1
+        <motion.div
           style={{ opacity: 0, x: 350 }}
-          className="text-center text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 heading"
+          className="heading text-center"
         >
-          Hi, I{"'"}m Abdullah Emad – Freelance Full-Stack Developer
-        </motion.h1>
-        <motion.p
+          <MainHeading className="text-center">
+            {`Hi, I'm Abdullah Emad a Freelance Full-Stack Developer`}
+          </MainHeading>
+        </motion.div>
+        <motion.div
           style={{ opacity: 0, x: -200 }}
-          className="text-center max-w-sm sm:max-w-xl lg:max-w-3xl mx-auto text-xs sm:text-sm lg:text-lg text-gray-400 description mb-12"
+          className="text-center mx-auto max-w-sm sm:max-w-xl text-gray-400 description mb-8"
         >
-          I design and develop stunning, high-performance web applications
+          <SubHeading className="font-semibold">
+            {`I design and develop stunning, high-performance web applications
           tailored to your unique needs. Let’s create something extraordinary
-          together
-        </motion.p>
+          together`}
+          </SubHeading>
+        </motion.div>
         <div className="flex items-center md:gap-8 sm:gap-4 gap-2 justify-center sm:flex-row flex-col font-semibold">
           <motion.div
             style={{ scale: 0, opacity: 0.4 }}
@@ -76,6 +82,7 @@ function HeroSection() {
               secondSpace={15}
               backClassName="bg-base-200"
               parentClassName="sm:h-16 h-10 w-full text-base border-2 border-primary hover:text-[#cdcdcd] hover:border-primary  transition-colors duration-300 hover:border-[#cdcdcd]"
+              className="sm:h-16 h-10 w-full text-base border-2 border-primary hover:text-[#cdcdcd] transition-colors duration-300 hover:border-[#cdcdcd]"
             >
               View My Work
             </MagneticRoundedButton>
@@ -98,22 +105,22 @@ function HeroSection() {
 
       <motion.div
         style={{ scaleY: 0, y: 100, rotateX: 90, translateZ: 100 }}
-        className="w-screen h-10 sm:h-14 md:h-16  lg:h-20 xl:h-22 bg-primary text-primary-content mb-2 marque-1 flex items-center text-2xl font-bold z-[999] select-none"
+        className="w-screen h-10 sm:h-12 md:h-14  lg:h-16  bg-primary text-primary-content mb-2 marque-1 flex items-center text-2xl font-bold z-[999] select-none"
       >
         <VelocityScroll
           default_velocity={0.3}
-          className=" text-sm sm:text-xl lg:text-2xl xl:text-3xl uppercase"
+          className=" text-sm sm:text-lg lg:text-xl xl:text-2xl uppercase"
           text="height quality and performance🚀 cool animations🔥 SEO optimize📈 "
         />
       </motion.div>
       <motion.div
         style={{ scaleY: 0, y: 100, rotateX: 90, translateZ: 100 }}
-        className="w-screen h-10 sm:h-14 md:h-16  lg:h-20 xl:h-22 bg-secondary text-secondary-content mb-2 marque-2 flex items-center text-2xl font-bold z-[999] select-none"
+        className="w-screen h-10 sm:h-12 md:h-14  lg:h-16  bg-secondary text-secondary-content mb-2 marque-2 flex items-center text-2xl font-bold z-[999] select-none"
       >
         <VelocityScroll
           default_velocity={-0.6}
           text="Let's build something cool✨ and beautiful🎨  "
-          className=" text-sm sm:text-xl lg:text-2xl xl:text-3xl uppercase"
+          className=" text-sm sm:text-lg lg:text-xl xl:text-2xl uppercase"
         />
       </motion.div>
     </section>

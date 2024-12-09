@@ -14,8 +14,8 @@ function Magnetic({ children, className, space = 20, setIsHovered, }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const springX = useSpring(x);
-  const springY = useSpring(y);
+  const springX = useSpring(x,{stiffness:100,damping:10});
+  const springY = useSpring(y,{stiffness:100,damping:10});
 
   const translateX = useTransform(springX, [-0.5, 0.5], [space, -space]);
   const translateY = useTransform(springY, [-0.5, 0.5], [space, -space]);

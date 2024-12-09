@@ -7,9 +7,10 @@ import { cn } from "@/lib/utils";
 interface Props {
   className?:string,
   children?:React.ReactNode;
-  backDropClassName?:string,
+  backDropClassName?:string;
+  degree?:string
 }
-export default function RotatedHoveredCard({ className, children,backDropClassName }: Props) {
+export default function RotatedHoveredCard({ className, children,backDropClassName, degree='22.5deg' }: Props) {
   const ref = useRef<HTMLDivElement>(null);
 
   const x = useMotionValue(0);
@@ -20,12 +21,12 @@ export default function RotatedHoveredCard({ className, children,backDropClassNa
   const rotateX = useTransform(
     mouseYSpring,
     [-0.5, 0.5],
-    ["22.5deg", "-22.5deg"]
+    [degree, `-${degree}`]
   );
   const rotateY = useTransform(
     mouseXSpring,
     [-0.5, 0.5],
-    ["-22.5deg", "22.5deg"]
+    [`-${degree}`, degree]
   );
 
   const handelMove = (e: React.MouseEvent) => {
