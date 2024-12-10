@@ -56,7 +56,7 @@ function MagneticRoundedButton({
       setIsHovered={setIsHovered}
       className={cn(
         "size-48 overflow-hidden relative bg-primary text-primary-content rounded-full grid place-items-center cursor-pointer text-2xl",
-        parentClassName
+        className
       )}
     >
       <Magnetic

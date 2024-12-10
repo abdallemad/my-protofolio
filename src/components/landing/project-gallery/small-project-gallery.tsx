@@ -2,7 +2,7 @@
 import { projects } from "@/utils/links";
 import { motion, useTransform, useScroll } from "framer-motion";
 import { useRef } from "react";
-import RotatedHoveredCard from "../animated-components/rotated-hovered-card";
+import RotatedHoveredCard from "@/components/ui/animated-components/rotated-hovered-card";
 import Image from "next/image";
 // bg-[#ef9995] shadow-[#ef9995]
 // bg-[#3659b1] shadow-[#3659b1]

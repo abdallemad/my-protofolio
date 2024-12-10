@@ -1,24 +1,23 @@
 "use client";
-import { projects, services } from "@/utils/links";
+import { services } from "@/utils/links";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
-import MagneticRoundedButton from "../animated-components/magnetic-rounded-button";
-import RotatedHoveredCard from "../animated-components/rotated-hovered-card";
+import MagneticRoundedButton from "../ui/animated-components/magnetic-rounded-button";
+import RotatedHoveredCard from "../ui/animated-components/rotated-hovered-card";
 import MaxWidthWrapper from "../global/max-width-wrapper";
-import SectionTitle from "../typography/section-title";
-import SubHeading from "../typography/sub-heading";
-import webAppIcon from "/public/images/svgs/carbon_application-web.svg";
+import SectionTitle from "../global/typography/section-title";
+import SubHeading from "../global/typography/sub-heading";
 
 function ServicesSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["-20% end", "end 80%"],
+    offset: ["-20% end", "end 50%"],
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], [-200, 0]);
+  const x = useTransform(scrollYProgress, [0, 1], [-600, 0]);
 
   return (
     <div ref={containerRef} className="">
@@ -43,7 +42,7 @@ function ServicesSection() {
               degree="8.5deg"
               key={service.description}
             >
-              <div className="w-full h-full flex flex-col gap-4 items-center text-center px-4">
+              <div className="w-full h-full flex flex-col gap-4 items-center text-center px-6">
                 <Image
                   src={service.icon}
                   alt=""
@@ -63,7 +62,9 @@ function ServicesSection() {
         </div>
         <motion.div style={{ x }} className="max-lg:self-end mx-auto flex justify-center mt-8">
           <Link href={"/services"}>
-            <MagneticRoundedButton parentClassName="ms:ml-auto max-sm:self-end shrink-0 max-sm:size-32 max-lg:text-sm max-lg:size-44 ">
+            <MagneticRoundedButton 
+            className="ms:ml-auto max-sm:self-end shrink-0 max-sm:size-32 max-lg:text-sm max-lg:size-44 "
+            >
               Learn More
             </MagneticRoundedButton>
           </Link>

@@ -7,8 +7,8 @@ import { useRef } from "react";
 import astroAnimation from "../../../public/lottie/astro-animation-lottei.json";
 import developerThinking from "../../../public/lottie/developer-thinking.json";
 import figmaAnimation from "../../../public/lottie/figma-animation.json";
-import SectionTitle from "../typography/section-title";
-import SubHeading from "../typography/sub-heading";
+import SectionTitle from "../global/typography/section-title";
+import SubHeading from "../global/typography/sub-heading";
 
 // Dynamically import Lottie to prevent SSR issues
 const DynamicLottie = dynamic(() => import("lottie-react"), { ssr: false });

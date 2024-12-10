@@ -1,13 +1,14 @@
-import React from "react";
-import MaxWidthWrapper from "./max-width-wrapper";
-import MagneticRoundedButton from "../animated-components/magnetic-rounded-button";
+"use client";
+import { socialLinks } from "@/utils/links";
 import Link from "next/link";
-import MainHeading from "../typography/main-heading";
-import SubHeading from "../typography/sub-heading";
+import MagneticRoundedButton from "../ui/animated-components/magnetic-rounded-button";
+import MaxWidthWrapper from "./max-width-wrapper";
+import MainHeading from "./typography/main-heading";
+import SubHeading from "./typography/sub-heading";
 function Footer() {
   return (
-    <div className="h-screen bg-base-300 sticky bottom-0">
-      <MaxWidthWrapper className="h-full pt-24 sm:pt-32 lg:pt-40">
+    <div className=" bg-base-300 sticky bottom-0">
+      <MaxWidthWrapper className="h-full py-24 sm:py-32 lg:py-40">
         <div className="flex gap-8 flex-col md:flex-row">
           <div className="flex-1">
             <div className="max-w-[950px]">
@@ -21,7 +22,10 @@ function Footer() {
               </SubHeading>
             </div>
           </div>
-          <MagneticRoundedButton parentClassName="shrink-0 lg:mt-12 max-md:self-end" className="shrink-0 lg:mt-12 max-md:self-end">
+          <MagneticRoundedButton
+            parentClassName="shrink-0 lg:mt-12 max-md:self-end"
+            className="lg:mt-12 max-md:self-end ms:ml-auto max-sm:self-end shrink-0 max-sm:size-32 max-lg:text-sm max-lg:size-44"
+          >
             Get In Touch
           </MagneticRoundedButton>
         </div>
@@ -32,8 +36,7 @@ function Footer() {
               space={20}
               secondSpace={15}
               backClassName="bg-base-200"
-              parentClassName="sm:h-16 h-10 w-full text-base border-2 border-primary hover:text-[#cdcdcd] hover:border-primary  transition-colors duration-300 hover:border-[#cdcdcd]"
-              className="sm:h-16 h-10 w-full text-base border-2 border-primary hover:text-[#cdcdcd] transition-colors duration-300 hover:border-[#cdcdcd]"
+              className="sm:h-16 max-sm:text-base max-md:text-lg h-10 w-full text-base border-2 border-primary hover:text-[#cdcdcd] transition-colors duration-300 hover:border-[#cdcdcd]"
             >
               abdallaemad1.3.2.0.0.5@gmail.com
             </MagneticRoundedButton>
@@ -43,7 +46,6 @@ function Footer() {
               space={20}
               secondSpace={15}
               backClassName="bg-base-200"
-              parentClassName="sm:h-16 h-10 w-full bg-secondary text-secondary-content text-base border-2 border-secondary hover:text-[#cdcdcd] hover:border-secondary  transition-colors duration-300 hover:border-[#cdcdcd]"
               className="sm:h-16 h-10 w-full bg-secondary text-secondary-content text-base border-2 border-secondary hover:text-[#cdcdcd] transition-colors duration-300 hover:border-[#cdcdcd]"
             >
               +20 155 764 6408
@@ -51,6 +53,36 @@ function Footer() {
           </Link>
         </div>
       </MaxWidthWrapper>
+      <footer className="border-t">
+        <MaxWidthWrapper className="  px-2 md:px-4 py-2 flex flex-wrap-reverse items-center justify-between">
+          <div className="flex  gap-4 ">
+            <div className="flex flex-col gap-2">
+              <span className="text-gray-500">2024 </span>
+              <span>&copy; Abdalla Emad</span>
+            </div>
+            <div className="flex flex-col gap-2">
+              <span className="text-gray-500">Build with </span>
+              <span>Next js</span>
+            </div>
+          </div>
+          <div className="flex flex-col gap-2">
+            <span className="text-gray-500">SOCAILS</span>
+            <ul className="flex gap-4">
+              {
+                socialLinks.map(link=>{
+                  return (
+                    <li key={link.href} className="capitalize cursor-pointer hover:text-primary transition-colors duration-500">
+                      <a target="_blank" href={link.href}>
+                        {link.label}
+                      </a>
+                    </li>
+                  )
+                })
+              }
+            </ul>
+          </div>
+        </MaxWidthWrapper>
+      </footer>
     </div>
   );
 }

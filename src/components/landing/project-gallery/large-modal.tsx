@@ -4,9 +4,9 @@ import {
   useMotionValue
 } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
-import MaxWidthWrapper from "../global/max-width-wrapper";
+import MaxWidthWrapper from "@/components/global/max-width-wrapper";
 import Modal from "./modal";
-import SectionTitle from "../typography/section-title";
+import SectionTitle from "@/components/global/typography/section-title";
 function LargeModal() {
   const containerRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);

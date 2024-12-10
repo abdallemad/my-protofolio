@@ -1,11 +1,11 @@
 "use client";
 import MaxWidthWrapper from "@/components/global/max-width-wrapper";
-import MainHeading from "../typography/main-heading";
+import MainHeading from "../global/typography/main-heading";
 import { useAnimate, motion } from "framer-motion";
 import { useEffect } from "react";
 import { VelocityScroll } from "@/components/ui/scroll-based-velocity";
-import MagneticRoundedButton from "@/components/animated-components/magnetic-rounded-button";
-import SubHeading from "../typography/sub-heading";
+import MagneticRoundedButton from "@/components/ui/animated-components/magnetic-rounded-button";
+import SubHeading from "../global/typography/sub-heading";
 function HeroSection() {
   const [scope, animate] = useAnimate();
   useEffect(() => {
@@ -66,7 +66,7 @@ function HeroSection() {
           style={{ opacity: 0, x: -200 }}
           className="text-center mx-auto max-w-sm sm:max-w-xl text-gray-400 description mb-8"
         >
-          <SubHeading className="font-semibold">
+          <SubHeading className="font-semibold text-pretty">
             {`I design and develop stunning, high-performance web applications
           tailored to your unique needs. Let’s create something extraordinary
           together`}
@@ -81,7 +81,6 @@ function HeroSection() {
               space={20}
               secondSpace={15}
               backClassName="bg-base-200"
-              parentClassName="sm:h-16 h-10 w-full text-base border-2 border-primary hover:text-[#cdcdcd] hover:border-primary  transition-colors duration-300 hover:border-[#cdcdcd]"
               className="sm:h-16 h-10 w-full text-base border-2 border-primary hover:text-[#cdcdcd] transition-colors duration-300 hover:border-[#cdcdcd]"
             >
               View My Work
@@ -95,7 +94,7 @@ function HeroSection() {
               space={20}
               secondSpace={15}
               backClassName="bg-base-200"
-              parentClassName="sm:h-16 h-10 w-full bg-secondary text-secondary-content text-base border-2 border-secondary hover:text-[#cdcdcd] hover:border-secondary  transition-colors duration-300 hover:border-[#cdcdcd]"
+              className="sm:h-16 h-10 w-full bg-secondary text-secondary-content text-base border-2 border-secondary hover:text-[#cdcdcd] transition-colors duration-300 hover:border-[#cdcdcd]"
             >
               {"let's Collaborate"}
             </MagneticRoundedButton>
@@ -105,22 +104,22 @@ function HeroSection() {
 
       <motion.div
         style={{ scaleY: 0, y: 100, rotateX: 90, translateZ: 100 }}
-        className="w-screen h-10 sm:h-12 md:h-14  lg:h-16  bg-primary text-primary-content mb-2 marque-1 flex items-center text-2xl font-bold z-[999] select-none"
+        className="w-screen h-10 sm:h-12 md:h-14  lg:h-16 xl:h-20  bg-primary text-primary-content mb-2 marque-1 flex items-center text-2xl font-bold z-[999] select-none"
       >
         <VelocityScroll
           default_velocity={0.3}
-          className=" text-sm sm:text-lg lg:text-xl xl:text-2xl uppercase"
+          className=" text-sm sm:text-base md:text-lg lg:text-2xl xl:text-3xl uppercase"
           text="height quality and performance🚀 cool animations🔥 SEO optimize📈 "
         />
       </motion.div>
       <motion.div
         style={{ scaleY: 0, y: 100, rotateX: 90, translateZ: 100 }}
-        className="w-screen h-10 sm:h-12 md:h-14  lg:h-16  bg-secondary text-secondary-content mb-2 marque-2 flex items-center text-2xl font-bold z-[999] select-none"
+        className="w-screen h-10 sm:h-12 md:h-14  lg:h-16 xl:h-20  bg-secondary text-secondary-content mb-2 marque-2 flex items-center text-2xl font-bold z-[999] select-none"
       >
         <VelocityScroll
           default_velocity={-0.6}
           text="Let's build something cool✨ and beautiful🎨  "
-          className=" text-sm sm:text-lg lg:text-xl xl:text-2xl uppercase"
+          className=" text-sm sm:text-base md:text-lg lg:text-2xl xl:text-3xl uppercase"
         />
       </motion.div>
     </section>
