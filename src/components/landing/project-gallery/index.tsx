@@ -5,7 +5,17 @@ import { useMediaQuery } from "react-responsive";
 import SmallProjectsGallery from "./small-project-gallery";
 import SectionTitle from "@/components/global/typography/section-title";
 import SubHeading from "@/components/global/typography/sub-heading";
-export default function ProjectGalleryWrapper() {
+import { StaticImageData } from "next/image";
+export default function ProjectGalleryWrapper({
+  projects,
+}: {
+  projects: {
+    label: string;
+    primaryColor: string;
+    image: StaticImageData;
+    index: number;
+  }[]
+}) {
   const isLarge = useMediaQuery({ query: "(min-width: 1024px)" });
   return (
     <section>
@@ -18,7 +28,7 @@ export default function ProjectGalleryWrapper() {
           </SubHeading>
         </div>
       </MaxWidthWrapper>
-      {isLarge ? <ProjectGallery /> : <SmallProjectsGallery />}
+      {isLarge ? <ProjectGallery projects={projects}/> : <SmallProjectsGallery projects={projects}/>}
     </section>
   );
 }

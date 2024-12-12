@@ -1,16 +1,24 @@
 "use client";
-import { projects } from "@/utils/links";
 import { motion, useTransform, useScroll } from "framer-motion";
 import { useRef } from "react";
 import RotatedHoveredCard from "@/components/ui/animated-components/rotated-hovered-card";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 // bg-[#ef9995] shadow-[#ef9995]
 // bg-[#3659b1] shadow-[#3659b1]
 // bg-[#16a34a] shadow-[#16a34a]
 // bg-[#3b82f6] shadow-[#3b82f6]
 // bg-[#313131] shadow-[#313131]
 
-const SmallProjectsGallery = () => {
+const SmallProjectsGallery = ({
+  projects
+}: {
+  projects: {
+    label: string;
+    primaryColor: string;
+    image: StaticImageData;
+    index: number;
+  }[]
+}) => {
   const targetRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -30,14 +38,23 @@ const SmallProjectsGallery = () => {
                 backDropClassName={`sm:h-[450px] sm:w-[450px] w-[300px] h-[400px] bg-${project.primaryColor} bg-[${project.primaryColor}] bg-opacity-40 shadow-2xl shadow-[${project.primaryColor}]`}
                 className={`bg-[${project.primaryColor}]`}
               >
-                <div 
-                style={{
-                  transformStyle: "preserve-3d",
-                  transform: "translateZ(75px)",
-                }}
-                className="h-full w-full grid place-content-center cursor-pointer">
-                  <Image src={project.image} alt="" width={400} height={400} className="group-hover:rotate-[9deg] transition-all duration-500" />
-                  <h2 className="text-center font-bold text-xl mt-2">{project.label}</h2>
+                <div
+                  style={{
+                    transformStyle: "preserve-3d",
+                    transform: "translateZ(75px)",
+                  }}
+                  className="h-full w-full grid place-content-center cursor-pointer"
+                >
+                  <Image
+                    src={project.image}
+                    alt=""
+                    width={400}
+                    height={400}
+                    className="group-hover:rotate-[9deg] transition-all duration-500"
+                  />
+                  <h2 className="text-center font-bold text-xl mt-2">
+                    {project.label}
+                  </h2>
                 </div>
               </RotatedHoveredCard>
             );
@@ -48,6 +65,4 @@ const SmallProjectsGallery = () => {
   );
 };
 
-
 export default SmallProjectsGallery;
-

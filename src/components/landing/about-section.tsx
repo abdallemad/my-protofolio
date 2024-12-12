@@ -71,7 +71,7 @@ export default function AboutSection() {
             />
             <div className="xl:col-span-2 pt-4 max-lg:text-center self-center">
               <SectionTitle className="lg:mb-8 sm:mb-4">
-                {`Hello, I’m Abdullah Emad`}
+                {`Who Am I?`}
               </SectionTitle>
               <SubHeading className="xl:text-xl">
                 I’m a 19-year-old full-stack developer passionate about turning
@@ -99,7 +99,7 @@ export default function AboutSection() {
           <div className="relative h-full w-full grid lg:grid-cols-2 xl:grid-cols-3 items-center justify-center sm:max-w-[90%] mx-auto px-12">
             <div className="xl:col-span-2 pt-4 max-lg:text-center">
               <SectionTitle className="lg:mb-8 sm:mb-4">
-                {`Crafting the Future of the Web`}
+                {`Crafting Engaging Interfaces and Scalable Solutions`}
               </SectionTitle>
               <SubHeading className="xl:text-xl">
                 I specialize in building user-friendly interfaces and scalable

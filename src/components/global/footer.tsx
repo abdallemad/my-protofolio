@@ -7,7 +7,7 @@ import MainHeading from "./typography/main-heading";
 import SubHeading from "./typography/sub-heading";
 function Footer() {
   return (
-    <div className=" bg-base-300 sticky bottom-0">
+    <section className=" bg-base-300 sticky bottom-0" id="contact">
       <MaxWidthWrapper className="h-full py-24 sm:py-32 lg:py-40">
         <div className="flex gap-8 flex-col md:flex-row">
           <div className="flex-1">
@@ -30,7 +30,7 @@ function Footer() {
           </MagneticRoundedButton>
         </div>
         <div className="w-full h-px bg-neutral-400 mt-8"></div>
-        <div className="grid grid-cols-2 max-w-[70%] gap-4 mt-8">
+        <div className="grid md:grid-cols-2 max-w-[70%] gap-4 mt-8">
           <Link href={"mailto:abdallaemad1.3.2.0.0.5@gmail.com"}>
             <MagneticRoundedButton
               space={20}
@@ -83,7 +83,7 @@ function Footer() {
           </div>
         </MaxWidthWrapper>
       </footer>
-    </div>
+    </section>
   );
 }
 

@@ -9,10 +9,6 @@ import pingPandaImage from "../../public/images/ping-panda.png";
 
 export const links = [
   {
-    label: "home",
-    href: "/",
-  },
-  {
     label: "about",
     href: "/about",
   },
@@ -35,30 +31,35 @@ export const projects = [
     primaryColor: "#ef9995",
     image: arakilImage,
     index: 0,
+    featured:true,
   },
   {
     label: "PING PANDA",
     primaryColor: "#3659b1",
     image: pingPandaImage,
     index: 1,
+    featured:true,
   },
   {
     label: "CASE COBRA",
     primaryColor: "#16a34a",
     image: caseCobraImage,
     index: 2,
+    featured:true,
   },
   {
     label: "COMFY STORE",
     primaryColor: "#3b82f6",
     image: comfyStoreImage,
     index: 3,
+    featured:true,
   },
   {
     label: "JOBIFY APP",
     primaryColor: "#313131",
     image: jobifyAppImage,
     index: 4,
+    featured:true
   },
 ];
 export const services = [
@@ -115,6 +116,6 @@ export const socialLinks = [
   },
   {
     label: "whatsapp",
-    href: "https://wa.me/201011111111",
+    href: "https://wa.me/201557646408",
   },
 ];

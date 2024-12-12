@@ -1,13 +1,18 @@
 "use client";
-import { projects } from "@/utils/links";
-import {
-  useMotionValue
-} from "framer-motion";
+import { useMotionValue } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 import MaxWidthWrapper from "@/components/global/max-width-wrapper";
 import Modal from "./modal";
 import SectionTitle from "@/components/global/typography/section-title";
-function LargeModal() {
+import { StaticImageData } from "next/image";
+function LargeModal({projects}: {
+  projects: {
+    label: string;
+    primaryColor: string;
+    image: StaticImageData;
+    index: number;
+  }[]
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -51,14 +56,13 @@ function LargeModal() {
           onMouseLeave={handleMouseLeave}
           ref={containerRef}
           className="min-h-96 mb-24 relative flex flex-col"
-          >
-
+        >
           <Modal
             hoveredProjectIndex={hoveredProjectIndex}
             modalOpen={modalOpen}
             x={x}
             y={y}
-            />
+          />
 
           <div>
             {projects.map((project) => (
