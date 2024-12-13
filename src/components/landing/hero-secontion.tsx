@@ -22,33 +22,33 @@ function HeroSection() {
       );
       await animate(
         ".sub_heading",
-        { opacity: 1, x: 0 },
+        { opacity: 1,},
         { type: "spring", duration: 0.5 }
       );
       await animate(
         ".btn-1",
-        { opacity: 1, y: 0, scale: 1 },
+        { opacity: 1, scale: 1 },
         { type: "spring", duration: 0.5 }
       );
       await animate(
         ".btn-2",
-        { opacity: 1, y: 0, scale: 1 },
+        { opacity: 1, scale: 1 },
         { type: "spring", duration: 0.5 }
       );
       await animate(
         ".my_image",
         { scaleY: 1, opacity: 1, y: 0 },
-        { type: "spring", duration: 1 }
+        { type:'spring', duration: .7 }
       );
       await animate(
         ".cover_my_image",
         { scaleY: 0 },
-        { type: "spring", duration: 1 }
+        { type:'spring', duration: .7 }
       );
       await animate(
         ".marque-1",
-        { scaleX: 1, rotateY: "0deg" },
-        { type: "spring", duration: 0.8 }
+        { scaleY: 1, rotateY: "0deg", y:0 },
+        { type:'spring', duration: 0.8 }
       );
     };
     try {
@@ -68,7 +68,7 @@ function HeroSection() {
           </MainHeading>
           {/* SUB HEADING */}
           <motion.div
-            style={{ opacity: 0, x: -200 }}
+            style={{ opacity: 0}}
             className="max-lg:mx-auto max-w-sm sm:max-w-2xl text-gray-400 mb-12 sub_heading"
           >
             <SubHeading className="font-semibold text-pretty">
@@ -78,7 +78,7 @@ function HeroSection() {
           {/* BUTTONs */}
           <div className="flex items-center md:gap-8 sm:gap-4 gap-2 max-lg:justify-center sm:flex-row flex-col font-semibold">
             <motion.div
-              style={{ opacity: 0, y: 200, scale: 0 }}
+              style={{ opacity: 0, scale: 0 }}
               className="btn-1 max-sm:w-[80%] max-sm:mx-auto sm:w-44"
             >
               <Link href={"/work"}>
@@ -93,7 +93,7 @@ function HeroSection() {
               </Link>
             </motion.div>
             <motion.div
-              style={{ opacity: 0, y: 200, scale: 0 }}
+              style={{ opacity: 0, scale: 0 }}
               className="btn-2 max-sm:w-[80%] max-sm:mx-auto sm:w-44"
             >
               <Link href="/contact">
@@ -128,7 +128,7 @@ function HeroSection() {
       </MaxWidthWrapper>
 
       <motion.div
-        style={{ scaleX: 0, rotateY: "90deg" }}
+        style={{ scaleY: 0, rotateY: "90deg", y:'200%' }}
         className="w-screen h-16 sm:h-20 md:h-24 bg-primary text-primary-content mb-2 flex items-center text-2xl font-bold z-[999] select-none marque-1 origin-bottom"
       >
         <VelocityScroll

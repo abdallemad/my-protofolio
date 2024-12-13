@@ -12,11 +12,11 @@ function Modal({
   modalOpen: boolean;
   hoveredProjectIndex: number;
 }) {
-  const animatedX = useSpring(x, { stiffness: 300, damping: 20 });
-  const animatedY = useSpring(y, { stiffness: 300, damping: 20 });
+  const animatedX = useSpring(x, { stiffness: 300, damping: 50 });
+  const animatedY = useSpring(y, { stiffness: 300, damping: 50 });
 
-  const animatedButtonX = useSpring(x, { stiffness: 300, damping: 10 });
-  const animatedButtonY = useSpring(y, { stiffness: 300, damping: 10 });
+  const animatedButtonX = useSpring(x, { stiffness: 300, damping: 30 });
+  const animatedButtonY = useSpring(y, { stiffness: 300, damping: 30 });
 
   console.log('rendering modal');
   return (

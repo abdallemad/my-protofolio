@@ -80,39 +80,41 @@ function Navbar() {
               </div>
             </motion.span>
           </Link>
-          <ul className=" items-center gap-6 hidden lg:flex">
+          <ul className=" items-center gap-4 hidden lg:flex">
             {links.map((link) => {
               const isActive =
                 (pathname === link.href && hoveredLink == null) ||
                 hoveredLink === link.href;
               return (
-                <MagneticLink key={link.href} className="relative">
-                  <Link
-                    onMouseEnter={() => setIsHoveredLink(link.href)}
-                    onMouseLeave={() => setIsHoveredLink(null)}
-                    href={link.href}
-                    className={"capitalize py-6 font-bold"}
-                  >
-                    {link.label}
-                  </Link>
-                  <AnimatePresence mode="wait">
-                    {isActive && (
-                      <motion.div
-                        variants={{
-                          hide: { scale: 0 },
-                          show: { scale: 1 },
-                        }}
-                        transition={{
-                          duration: 0.4,
-                        }}
-                        initial="hide"
-                        animate="show"
-                        exit="hide"
-                        className="absolute top-[calc(100%+4px)]  w-full  h-1 bg-[#cdcdcd] rounded-full"
-                      />
-                    )}
-                  </AnimatePresence>
-                </MagneticLink>
+                <li key={link.href}  className="relative">
+                  <MagneticLink>
+                    <Link
+                      onMouseEnter={() => setIsHoveredLink(link.href)}
+                      onMouseLeave={() => setIsHoveredLink(null)}
+                      href={link.href}
+                      className={"capitalize py-6 font-bold"}
+                    >
+                      {link.label}
+                    </Link>
+                    <AnimatePresence mode="wait">
+                      {isActive && (
+                        <motion.div
+                          variants={{
+                            hide: { scale: 0 },
+                            show: { scale: 1 },
+                          }}
+                          transition={{
+                            duration: 0.4,
+                          }}
+                          initial="hide"
+                          animate="show"
+                          exit="hide"
+                          className="absolute top-[calc(100%+4px)]  w-full  h-1 bg-[#cdcdcd] rounded-full"
+                        />
+                      )}
+                    </AnimatePresence>
+                  </MagneticLink>
+                </li>
               );
             })}
           </ul>
@@ -143,7 +145,7 @@ function Navbar() {
             <MagneticRoundedButton
               space={30}
               secondSpace={20}
-              className="bg-primary rounded-full z-[999] inline-block cursor-pointer size-12 sm:size-24"
+              className="bg-primary rounded-full z-[999] inline-block cursor-pointer size-16 sm:size-24"
             >
               <div className="flex flex-col w-[40%] gap-2 items-center z-10">
                 <motion.span
