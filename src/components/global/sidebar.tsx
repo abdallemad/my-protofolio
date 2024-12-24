@@ -1,11 +1,10 @@
 "use client";
-import { animate, motion } from "framer-motion";
-import MaxWidthWrapper from "./max-width-wrapper";
-import { links } from "@/utils/links";
+import { cn } from "@/lib/utils";
+import { links, socialLinks } from "@/utils/links";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
-import { cn } from "@/lib/utils";
-import { socialLinks } from "@/utils/links";
+import MaxWidthWrapper from "./max-width-wrapper";
 interface Props {
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -34,7 +33,7 @@ function Sidebar({ setIsSidebarOpen }: Props) {
           <div className="w-full h-px bg-zinc-900 mb-6" />
           <div className="flex items-center gap-8">
             <div className="lg:col-span-2 grid md:grid-cols-2 lg:grid-cols-3 font-bold text-5xl lg:text-7xl uppercase gap-x-6 gap-y-4 flex-1">
-              {links.map((link) => {
+              {[{label:"Home",href:"/"},...links].map((link) => {
                 const isHovered =
                   hoveredLink !== link.label && hoveredLink !== null;
                 return (

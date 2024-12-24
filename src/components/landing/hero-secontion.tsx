@@ -12,19 +12,12 @@ import my_Image from "/public/images/my_img.jpg";
 import Magnetic from "../ui/animated-components/magnetic";
 import Link from "next/link";
 function HeroSection() {
-  const heading = `Hi, I’m Abdullah—Your Partner for Web Excellence`;
-  const letter_duration = 50;
   const [scope, animate] = useAnimate();
   useEffect(() => {
     const introAnimation = async () => {
-      await new Promise((resolve) =>
-        setTimeout(resolve, heading.length * letter_duration + 1000)
-      );
-      await animate(
-        ".sub_heading",
-        { opacity: 1,},
-        { type: "spring", duration: 0.5 }
-      );
+      await animate('.head-1',{opacity:1,x:0},{type:'spring', duration:.5})
+      await animate('.head-2',{opacity:1,x:0},{type:'spring', duration:.5})
+      await animate('.sub_heading',{opacity:1,x:0},{type:'spring', duration:.5})
       await animate(
         ".btn-1",
         { opacity: 1, scale: 1 },
@@ -38,17 +31,17 @@ function HeroSection() {
       await animate(
         ".my_image",
         { scaleY: 1, opacity: 1, y: 0 },
-        { type:'spring', duration: .7 }
+        { type: "spring", duration: 0.7 }
       );
       await animate(
         ".cover_my_image",
         { scaleY: 0 },
-        { type:'spring', duration: .7 }
+        { type: "spring", duration: 0.7 }
       );
       await animate(
         ".marque-1",
-        { scaleY: 1, rotateY: "0deg", y:0 },
-        { type:'spring', duration: 0.8 }
+        { scaleY: 1, rotateY: "0deg", y: 0 },
+        { type: "spring", duration: 0.8 }
       );
     };
     try {
@@ -56,19 +49,41 @@ function HeroSection() {
     } catch (error) {
       console.log("some thing not working.");
     }
-  }, [animate, heading.length]);
+  }, [animate]);
   return (
-    <section className="relative max-sm:pb-24 pb-[4.5rem] overflow-x-hidden" ref={scope}>
+    <section
+      className="relative max-sm:pb-24 pb-[4.5rem] overflow-x-hidden"
+      ref={scope}
+    >
       <MaxWidthWrapper className="pt-[12dvh] lg:pt-[9dvh] max-lg:mb-[10dvh] mb-[7dvh] flex items-center gap-8">
+        {/* SECOND COLUMN */}
+        <Magnetic space={20}>
+          <motion.div
+            style={{ opacity: 0, scaleY: 0, y: 200 }}
+            className="hidden lg:block w-fit h-full my_image bg-primary relative p-1 rounded-box "
+          >
+            <motion.div className="absolute inset-0 bg-primary cover_my_image origin-top rounded-box" />
+            <Magnetic space={5}>
+              <Image
+                src={my_Image}
+                alt="my image"
+                className="aspect-square xl:max-w-[350px] lg:max-w-[300px] rounded- object-cover select-none pointer-events-none rounded-box hover:scale-90 transition-all duration-300"
+              />
+            </Magnetic>
+          </motion.div>
+        </Magnetic>
         {/* FIRST COLUMN */}
         <div className=" max-lg:text-center">
           {/* HEADING */}
-          <MainHeading>
-            <TypingAnimation text={heading} duration={letter_duration} />
-          </MainHeading>
+          <motion.div style={{ opacity: 0, x: 200 }} className="head-1 mb-1">
+            <MainHeading className="mb-0">Hi, I’m Abdullah👋</MainHeading>
+          </motion.div>
+          <motion.div style={{ opacity: 0, x: -200 }} className="head-2 mb-2">
+            <MainHeading className="mb-2">Your partner for web excellence.</MainHeading>
+          </motion.div>
           {/* SUB HEADING */}
           <motion.div
-            style={{ opacity: 0}}
+            style={{ opacity: 0, x: 300 }}
             className="max-lg:mx-auto max-w-sm sm:max-w-2xl text-gray-400 mb-12 sub_heading"
           >
             <SubHeading className="font-semibold text-pretty">
@@ -109,26 +124,10 @@ function HeroSection() {
             </motion.div>
           </div>
         </div>
-        {/* SECOND COLUMN */}
-        <Magnetic space={20}>
-          <motion.div
-            style={{ opacity: 0, scaleY: 0, y: 200 }}
-            className="hidden lg:block w-fit h-full my_image bg-primary relative p-1 rounded-box "
-          >
-            <motion.div className="absolute inset-0 bg-primary cover_my_image origin-top rounded-box" />
-            <Magnetic space={5}>
-              <Image
-                src={my_Image}
-                alt="my image"
-                className="aspect-square xl:max-w-[350px] lg:max-w-[300px] rounded- object-cover select-none pointer-events-none rounded-box hover:scale-90 transition-all duration-300"
-              />
-            </Magnetic>
-          </motion.div>
-        </Magnetic>
       </MaxWidthWrapper>
 
       <motion.div
-        style={{ scaleY: 0, rotateY: "90deg", y:'200%' }}
+        style={{ scaleY: 0, rotateY: "90deg", y: "200%" }}
         className="w-screen h-16 sm:h-20 md:h-24 bg-primary text-primary-content mb-2 flex items-center text-2xl font-bold z-[999] select-none marque-1 origin-bottom"
       >
         <VelocityScroll

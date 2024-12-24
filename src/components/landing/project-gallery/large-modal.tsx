@@ -75,7 +75,6 @@ function LargeModal({projects}: {
                 <SectionTitle className="font-bold lg:mb-8 sm:mb-4">
                   {project.label}
                 </SectionTitle>
-                <p className="font-semibold text-2xl ">2023</p>
               </div>
             ))}
           </div>
